@@ -11,5 +11,8 @@
     "react"
   ],
   "author": "David Jackson",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^1.12.1"
+  }
 }
