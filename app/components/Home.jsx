@@ -1,7 +1,7 @@
 import React from 'react';
 import Router from 'react-router';
 
-import getAllData from '../stores/everything';
+import getStore from '../stores';
 import {kvMap} from '../utils';
 
 var Link = Router.Link;
@@ -11,7 +11,7 @@ export default class Home extends React.Component {
     super(props);
     this.state = {years: null};
 
-    getAllData()
+    getStore()
     .then((data) => this.setState({years: data.years}));
   }
 
