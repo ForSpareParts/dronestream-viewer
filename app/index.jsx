@@ -2,7 +2,7 @@ import React from 'react';
 import Router from 'react-router';
 /* global document */
 
-import NavBar from './components/NavBar';
+import App from './components/App';
 import Home from './components/Home';
 import Year from './components/Year';
 
@@ -11,16 +11,6 @@ var Link = Router.Link;
 var Route = Router.Route;
 var RouteHandler = Router.RouteHandler;
 
-class App extends React.Component {
-  render() {
-    return (
-      <div class="app-container">
-        <NavBar />
-        <RouteHandler {...this.props}/>
-      </div>
-    );
-  }
-}
 
 var routes = (
   <Route name="app" path="/" handler={App}>
