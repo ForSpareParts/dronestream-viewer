@@ -2,28 +2,31 @@ import moment from 'moment';
 import superagent from 'superagent';
 import saPromise from 'superagent-promise';
 
-import data from './data';
+import rawData from './data';
 
 var request = saPromise(superagent, Promise);
 
 export default function() {
-  return Promise.resolve(data)
+  var data = {};
+
+  return Promise.resolve(rawData)
   .then((res) => {
-    //sort strike data by year:
-    var yearMap = new Map();
-    res.body.strike.forEach((strike) => {
+
+    data.droneStrikes = res.body.strike;
+    data.years = {};
+
+    data.droneStrikes.forEach((strike) => {
       var date = moment(strike.date);
 
-      if (!yearMap.has(date.year())) {
-        yearMap.set(date.year(), []);
+      if (!data.years[date.year()]) {
+        data.years[date.year()] = {
+          droneStrikes: []
+        };
       }
 
-      yearMap.get(date.year()).push(strike);
+      data.years[date.year()].droneStrikes.push(strike);
     });
 
-    return {
-      allStrikes: res.body.strike,
-      byYear: yearMap
-    }
+    return data;
   });
 }
