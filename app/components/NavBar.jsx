@@ -7,7 +7,7 @@ export default class NavBar extends React.Component {
   render() {
     return (
       <header>
-        <Link to="year" params={{year: 2010}}>
+        <Link to="app">
           <h1>Drone Strike Data Viewer</h1>
         </Link>
       </header>
