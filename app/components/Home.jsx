@@ -1,8 +1,9 @@
 import React from 'react';
+import {Line as LineChart} from 'react-chartjs';
 import Router from 'react-router';
 
 import getStore from '../stores';
-import {kvMap} from '../utils';
+import {kvMap, buildChartData} from '../utils';
 
 var Link = Router.Link;
 
@@ -15,6 +16,16 @@ export default class Home extends React.Component {
     .then((data) => this.setState({years: data.years}));
   }
 
+  getChartData() {
+    var labels = Object.keys(this.state.years);
+    labels.sort();
+
+    var data = labels.map(
+      (year) => this.state.years[year].droneStrikes.length);
+
+    return buildChartData(labels, data);
+  }
+
   render() {
     if (!this.state.years) {
       return <span className="loading">Loading data...</span>;
@@ -23,15 +34,7 @@ export default class Home extends React.Component {
     return (
 
       <div className="home">
-        Overview of drone strike data goes here.
-        <ul>{kvMap(this.state.years, (year, data, index) => (
-
-            <li key={year}>
-              There were {data.droneStrikes.length} covert drone strikes
-              in <Link to="year" params={{year: year}}>{year}.</Link>
-            </li>
-
-        ))}</ul>
+        <LineChart data={this.getChartData()} width="800" height="600" />
       </div>
 
     )
