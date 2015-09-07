@@ -2,6 +2,7 @@ import React from 'react';
 import {Line as LineChart} from 'react-chartjs';
 import Router from 'react-router';
 
+import DroneStrikeTable from './DroneStrikeTable'
 import getStore from '../stores';
 import {kvMap, buildChartData} from '../utils';
 
@@ -10,10 +11,13 @@ var Link = Router.Link;
 export default class Home extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {years: null};
+    this.state = {years: null, droneStrikes: null};
 
     getStore()
-    .then((data) => this.setState({years: data.years}));
+    .then((data) => this.setState({
+      years: data.years,
+      droneStrikes: data.droneStrikes
+    }));
   }
 
   getChartData() {
@@ -27,7 +31,7 @@ export default class Home extends React.Component {
   }
 
   render() {
-    if (!this.state.years) {
+    if (!this.state.years || !this.state.droneStrikes) {
       return <span className="loading">Loading data...</span>;
     }
 
@@ -35,6 +39,7 @@ export default class Home extends React.Component {
 
       <div className="home">
         <LineChart data={this.getChartData()} width="800" height="600" />
+        <DroneStrikeTable droneStrikes={this.state.droneStrikes} />
       </div>
 
     )

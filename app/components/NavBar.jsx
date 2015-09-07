@@ -10,6 +10,12 @@ export default class NavBar extends React.Component {
         <Link to="app">
           <h1>Drone Strike Data Viewer</h1>
         </Link>
+
+        <ul className="year-links">
+          {this.props.years.map((year) => (
+            <li><Link to="year" params={{year: year}}>{year}</Link></li>
+          ))}
+        </ul>
       </header>
     );
   }
