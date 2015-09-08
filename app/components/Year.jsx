@@ -11,12 +11,13 @@ export default class Year extends React.Component {
   constructor(props) {
     super(props);
     this.state = {droneStrikes: null, months: null};
+  }
 
+  componentWillReceiveProps(nextProps) {
     getStore()
-    .then((data) => {console.log(data.years[this.props.params.year]); console.log(this.props); return data;})
     .then((data) => this.setState({
-      droneStrikes: data.years[this.props.params.year].droneStrikes,
-      months: data.years[this.props.params.year].months
+      droneStrikes: data.years[nextProps.params.year].droneStrikes,
+      months: data.years[nextProps.params.year].months
     }));
   }
 
@@ -26,6 +27,15 @@ export default class Year extends React.Component {
       (monthName) => this.state.months[monthName].droneStrikes.length);
 
     return buildChartData(labels, data);
+  }
+
+  getChartOptions() {
+    return {
+      scaleOverride: true,
+      scaleSteps: 6,
+      scaleStepWidth: 5,
+      scaleStartValue: 0,
+    }
   }
 
   /**
@@ -55,7 +65,10 @@ export default class Year extends React.Component {
         <span className="summary">
           There were {this.state.droneStrikes.length} covert drone strikes in {this.props.params.year}.
         </span>
-        <LineChart data={this.getChartData()} width="800" height="600" />
+        <LineChart
+          data={this.getChartData()}
+          options={this.getChartOptions()}
+          width="800" height="600" />
         <DroneStrikeTable droneStrikes={this.state.droneStrikes} />
       </div>
     );
