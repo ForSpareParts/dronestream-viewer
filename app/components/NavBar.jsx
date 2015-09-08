@@ -11,7 +11,7 @@ export default class NavBar extends React.Component {
           Drone Strike Data Viewer
         </Link>
         {this.props.years.map((year) => (
-          <Link to="year" params={{year: year}}>{year}</Link>
+          <Link to="year" key={year} params={{year: year}}>{year}</Link>
         ))}
       </nav>
     );

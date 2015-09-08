@@ -23,3 +23,8 @@ nav {
 .main-view {
   @extend .col-md-9;
 }
+
+table.drone-strikes {
+  @extend .table;
+  @extend .table-hover;
+}
