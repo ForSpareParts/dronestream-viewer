@@ -28,7 +28,11 @@ module.exports = {
       {
         test: /\.scss$/,
         loader: ExtractTextPlugin.extract("style-loader", "css-loader!sass-loader")
-      }
+      },
+      { test: /\.woff(2)?$/,   loader: "url-loader?limit=10000&minetype=application/font-woff" },
+      { test: /\.ttf$/,    loader: "file-loader" },
+      { test: /\.eot$/,    loader: "file-loader" },
+      { test: /\.svg$/,    loader: "file-loader" }
     ]
   },
   resolve: {
