@@ -4,7 +4,7 @@ import Router from 'react-router';
 
 import DroneStrikeTable from './DroneStrikeTable'
 import getStore from '../stores';
-import {kvMap, buildChartData} from '../utils';
+import {buildChartData} from '../utils';
 
 var Link = Router.Link;
 

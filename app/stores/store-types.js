@@ -36,9 +36,29 @@ export class ApplicationStore extends DroneStrikeStore {
     var date = moment(strike.date);
 
     if (!this.years[date.year()]) {
-      this.years[date.year()] = new DroneStrikeStore();
+      this.years[date.year()] = new YearStore();
     }
 
-    this.years[date.year()].droneStrikes.push(strike);
+    this.years[date.year()].push(strike);
+  }
+}
+
+export class YearStore extends DroneStrikeStore {
+  createStorage() {
+    super.createStorage();
+    this.months = {};
+
+    moment.monthsShort().forEach((monthName) => {
+      this.months[monthName] = new DroneStrikeStore();
+    });
+  }
+
+  push(strike) {
+    super.push(strike);
+
+    var date = moment(strike.date);
+    var monthName = date.format('MMM'); //'Jan', 'Feb', etc.
+
+    this.months[monthName].push(strike);
   }
 }
