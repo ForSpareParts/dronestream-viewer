@@ -24,8 +24,10 @@ export default class App extends React.Component {
   render() {
     return (
       <div className="app-container">
-        <NavBar years={this.state.years}/>
-        <RouteHandler {...this.props} />
+        <div className="bootstrap-wrapper">
+          <NavBar years={this.state.years}/>
+          <RouteHandler {...this.props} />
+        </div>
       </div>
     );
   }

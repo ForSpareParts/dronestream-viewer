@@ -32,12 +32,12 @@ export default class Home extends React.Component {
 
   render() {
     if (!this.state.years || !this.state.droneStrikes) {
-      return <span className="loading">Loading data...</span>;
+      return <div className="main-view loading">Loading data...</div>;
     }
 
     return (
 
-      <div className="home">
+      <div className="main-view home">
         <LineChart data={this.getChartData()} width="800" height="600" />
         <DroneStrikeTable droneStrikes={this.state.droneStrikes} />
       </div>

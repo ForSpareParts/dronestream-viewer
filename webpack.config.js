@@ -13,7 +13,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Dronestream Viewer',
     }),
-    new ExtractTextPlugin("index.css")
+    new ExtractTextPlugin("/index.css")
   ],
   devServer: {
     inline: true,

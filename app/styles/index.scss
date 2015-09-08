@@ -1,5 +1,25 @@
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import "../../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap";
 
-body {
+.app-container {
+  @extend .container;
+
+  margin-top: 50px;
+}
+
+.bootstrap-wrapper {
+  @extend .row;
+}
+
+nav {
+  @extend .col-md-3;
+  @extend .list-group;
+
+  a {
+    @extend .list-group-item;
+  }
+}
+
+.main-view {
+  @extend .col-md-9;
 }

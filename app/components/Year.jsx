@@ -13,11 +13,23 @@ export default class Year extends React.Component {
     this.state = {droneStrikes: null, months: null};
   }
 
+  componentWillMount() {
+    this.fetchStrikes(this.props.params.year);
+  }
+
   componentWillReceiveProps(nextProps) {
+    this.fetchStrikes(nextProps.params.year);
+  }
+
+  /**
+   * Retrieves drone strike data for a given year and asynchronously pushes
+   * it into state.
+   */
+  fetchStrikes(year) {
     getStore()
     .then((data) => this.setState({
-      droneStrikes: data.years[nextProps.params.year].droneStrikes,
-      months: data.years[nextProps.params.year].months
+      droneStrikes: data.years[year].droneStrikes,
+      months: data.years[year].months
     }));
   }
 
@@ -46,7 +58,7 @@ export default class Year extends React.Component {
    */
   wrap(content) {
     return (
-      <div className="year">
+      <div className="main-view year">
         <h2>{this.props.params.year}</h2>
         {content}
       </div>);

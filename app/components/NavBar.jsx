@@ -6,17 +6,14 @@ var Link = Router.Link;
 export default class NavBar extends React.Component {
   render() {
     return (
-      <header>
+      <nav>
         <Link to="app">
-          <h1>Drone Strike Data Viewer</h1>
+          Drone Strike Data Viewer
         </Link>
-
-        <ul className="year-links">
-          {this.props.years.map((year) => (
-            <li><Link to="year" params={{year: year}}>{year}</Link></li>
-          ))}
-        </ul>
-      </header>
+        {this.props.years.map((year) => (
+          <Link to="year" params={{year: year}}>{year}</Link>
+        ))}
+      </nav>
     );
   }
 }
