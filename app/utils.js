@@ -32,5 +32,5 @@ export function buildChartData(labels, data) {
         data: data
       }
     ]
-  }
+  };
 }
