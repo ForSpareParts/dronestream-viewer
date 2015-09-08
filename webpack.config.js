@@ -16,7 +16,7 @@ module.exports = {
     new ExtractTextPlugin("/index.css")
   ],
   devServer: {
-    inline: true,
+    inline: true
   },
   module: {
     loaders: [
